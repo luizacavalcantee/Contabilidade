@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import mplcursors
 from matplotlib.widgets import Button
+import os
 
 class GestaoFinanceira:
     def __init__(self, file_path):
@@ -171,7 +172,10 @@ class GestaoFinanceira:
 
 # Exemplo de uso
 try:
-    file_path = "../planilha.xlsx"
+    # Obtém o diretório atual do script
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    # Constrói o caminho absoluto para o arquivo
+    file_path = os.path.join(base_dir, "../../planilha.xlsx")
     gestao = GestaoFinanceira(file_path)
     gestao.visualizar_dados()
 except Exception as e:
