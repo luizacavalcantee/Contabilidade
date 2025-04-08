@@ -1,8 +1,19 @@
-import streamlit as st
-import pandas as pd
+import sys
 import os
+from pathlib import Path
+import pandas as pd
 import plotly.express as px
-from src.finance.process_excel import GestaoFinanceira
+import streamlit as st
+
+# ---- CONFIGURAÇÃO DE CAMINHOS ---- #
+# Adiciona o diretório src ao PATH (solução universal)
+sys.path.insert(0, str(Path(__file__).parent))
+
+try:
+    from src.finance.process_excel import GestaoFinanceira
+except ImportError as e:
+    st.error(f"❌ Erro crítico - Verifique a estrutura do projeto: {str(e)}")
+    st.stop()
 
 # Configuração da página
 st.set_page_config(
@@ -10,20 +21,6 @@ st.set_page_config(
     layout="wide",
     page_icon="📊"
 )
-
-# CSS para melhorar o visual
-st.markdown("""
-<style>
-    .stMetric {
-        background-color: #f0f2f6;
-        padding: 15px;
-        border-radius: 10px;
-    }
-    .stMetric label {
-        font-weight: bold !important;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 # Título do app
 st.title("📊 Análise Financeira")
