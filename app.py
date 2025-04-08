@@ -1,16 +1,11 @@
-import sys
 from pathlib import Path
 import os
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-# ---- AJUSTE PARA FUNCIONAR NO STREAMLIT CLOUD ---- #
-# Adiciona a pasta 'src' ao path do sistema
-sys.path.append(str(Path(__file__).parent / "src"))
-
 # Importa o módulo de gestão financeira
-from finance.process_excel import GestaoFinanceira
+from src.finance.process_excel import GestaoFinanceira
 
 # Configuração da página
 st.set_page_config(
