@@ -1,19 +1,16 @@
 import sys
-import os
 from pathlib import Path
+import os
 import pandas as pd
 import plotly.express as px
 import streamlit as st
 
-# ---- CONFIGURAÇÃO DE CAMINHOS ---- #
-# Adiciona o diretório src ao PATH (solução universal)
-sys.path.insert(0, str(Path(__file__).parent))
+# ---- AJUSTE PARA FUNCIONAR NO STREAMLIT CLOUD ---- #
+# Adiciona a pasta 'src' ao path do sistema
+sys.path.append(str(Path(__file__).parent / "src"))
 
-try:
-    from src.finance.process_excel import GestaoFinanceira
-except ImportError as e:
-    st.error(f"❌ Erro crítico - Verifique a estrutura do projeto: {str(e)}")
-    st.stop()
+# Importa o módulo de gestão financeira
+from finance.process_excel import GestaoFinanceira
 
 # Configuração da página
 st.set_page_config(
